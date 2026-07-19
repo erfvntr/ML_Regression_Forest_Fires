@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forest Fire Temperature Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <main class="page">
+
+        <section class="image-panel">
+            <img src="{{ url_for('static', filename='forestfires.jfif') }}" alt="Forest fire">
+            <div class="image-overlay">
+                <h2>Forest Fire ML Model</h2>
+                <p>Temperature prediction based on environmental indicators.</p>
+            </div>
+        </section>
+
+        <section class="content-panel">
+            <div class="content-card">
+
+                <h1>Forest Fire Temperature Prediction</h1>
+                <p class="subtitle">Enter environmental values to generate a temperature prediction.</p>
+
+                <form method="POST" action="{{ url_for('predict') }}">
+                    <div class="input-grid">
+                        <input type="number" step="any" name="ffmc" placeholder="FFMC: float number, e.g. 86.2" required>
+                        <input type="number" step="any" name="dmc" placeholder="DMC: float number, e.g. 26.2" required>
+                        <input type="number" step="any" name="dc" placeholder="DC: float number, e.g. 94.3" required>
+                        <input type="number" step="any" name="isi" placeholder="ISI: float number, e.g. 5.1" required>
+                        <input type="number" step="1" min="0" max="100" name="rh" placeholder="RH: int number, e.g. 51" required>
+                        <input type="number" step="any" name="wind" placeholder="Wind: float number, e.g. 6.7" required>
+                        <input type="number" step="any" min="0" name="rain" placeholder="Rain: float number, e.g. 0.0" required>
+                        <input type="number" step="any" min="0" name="area" placeholder="Area: float number, e.g. 0.0" required>
+                    </div>
+
+                    <button type="submit">Predict Temperature</button>
+                </form>
+
+                <div class="result-box">
+
+                    {% if prediction is defined and prediction is not none %}
+                        <p class="prediction">{{ "%.2f"|format(prediction) }} °C</p>
+                    {% else %}
+                        <p class="result-placeholder">Your prediction will appear here</p>
+                    {% endif %}
+
+                    {% if error is defined and error %}
+                        <p class="error">{{ error }}</p>
+                    {% endif %}
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>
