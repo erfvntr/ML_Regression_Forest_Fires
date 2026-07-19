@@ -1,7 +1,7 @@
 from pathlib import Path
 import pickle
 
-base_dir = Path(__file__).resolve().parent.parent
+base_dir = Path(__file__).resolve().parent
 model_path = base_dir / "best_model_full.pkl"
 
 

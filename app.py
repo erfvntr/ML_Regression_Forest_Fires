@@ -6,7 +6,7 @@ from flask import Flask, render_template, request
 from model_loader import load_model
 
 
-base_dir = Path(__file__).resolve().parent.parent
+base_dir = Path(__file__).resolve().parent
 
 app = Flask(
     __name__,
