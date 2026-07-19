@@ -6,3 +6,5 @@ seaborn
 ucimlrepo
 flask
 scipy
+gunicorn
+
